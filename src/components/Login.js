@@ -1,18 +1,17 @@
 import axios from "axios";
 import React, { useState } from "react";
 
-const Signup = () => {
-  const [name, setName] = useState("");
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const register = (e) => {
+  const signin = (e) => {
     e.preventDefault();
-    console.log(name, email, password);
-    if (name !== "" && email !== "" && password !== "") {
+    console.log(email, password);
+    if (email !== "" && password !== "") {
       axios
-        .post("http://localhost:5000/signup", { name, email, password })
+        .post("http://localhost:5000/signup", { email, password })
         .then((response) => alert(response))
         .catch((error) => setError("User Already exist"));
     } else {
@@ -21,15 +20,9 @@ const Signup = () => {
   };
   return (
     <div>
-      <h1>Sign Up</h1>
+      <h1>Sign In</h1>
       {error && <span style={{ color: "red" }}>{error}</span>}
-      <form onSubmit={register}>
-        <input
-          type="text"
-          placeholder="name"
-          onChange={(e) => setName(e.target.value)}
-        />
-        <br />
+      <form onSubmit={signin}>
         <input
           type="text"
           placeholder="email"
@@ -42,10 +35,10 @@ const Signup = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
-        <button type="submit">Sign Up</button>
+        <button type="submit">Sign In</button>
       </form>
     </div>
   );
 };
 
-export default Signup;
+export default Login;
