@@ -28,38 +28,38 @@ const Signup = () => {
     }
   };
   return (
-    <div class="main">
-      <p class="sign" align="center">
-        Sign In
+    <div className="main">
+      <p className="sign" align="center">
+        Sign Up
       </p>
       {error && <span style={{ color: "red" }}>{error}</span>}
-      <form onSubmit={register}>
+      <form className="form1" onSubmit={register}>
         <input
           type="text"
-          class="un"
+          className="un"
           placeholder="Name"
           onChange={(e) => setName(e.target.value)}
         />
         <br />
         <input
           type="text"
-          class="un"
+          className="un"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
         <br />
         <input
           type="password"
-          class="pass"
+          className="pass"
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
-        <button class="submit" align="center" type="submit">
+        <button className="submit" align="center" type="submit">
           Sign Up
         </button>
       </form>
-      <p class="forgot" align="center">
+      <p className="forgot" align="center">
         <Link to="/Login">Sign In</Link>
       </p>
     </div>
