@@ -1,6 +1,12 @@
 import axios from "axios";
 import React, { useState } from "react";
-
+export const handleErrors = async (response) => {
+  if (!response.ok) {
+    const { message } = await response.json();
+    throw Error(message);
+  }
+  return response.json();
+};
 const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

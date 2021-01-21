@@ -4,7 +4,6 @@ const express = require("express"),
 const User = require("../../models/user");
 
 router.post("/signup", async (req, res) => {
-  console.log(req.body);
   const { name, email, password } = req.body;
   const user = await User.findOne({ email }).exec();
   if (user) {
@@ -13,6 +12,18 @@ router.post("/signup", async (req, res) => {
   } else {
     await User.create({ name, email, password });
     res.json({ success: true });
+  }
+});
+
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  const user = await User.findOne({ email }).exec();
+
+  if (!!user && user.password !== password) {
+    res.status(403).json({ message: "Invalid credentials" });
+    return;
+  } else {
+    res.json({ message: user });
   }
 });
 

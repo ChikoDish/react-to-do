@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Signup from "./components/Signup";
 import Landing from "./components/Landing";
 import Login from "./components/Login";
+import Forget from "./components/Forget";
 
 function App() {
   return (
@@ -10,6 +11,9 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
+            <Login />
+          </Route>
+          <Route exact path="/landing">
             <Landing />
           </Route>
           <Route exect path="/signup">
@@ -17,6 +21,9 @@ function App() {
           </Route>
           <Route exect path="/login">
             <Login />
+          </Route>
+          <Route exact path="/forget">
+            <Forget />
           </Route>
         </Switch>
       </Router>
