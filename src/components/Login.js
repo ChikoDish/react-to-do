@@ -29,15 +29,14 @@ const Login = () => {
         <input
           class="un"
           type="text"
-          placeholder="email"
+          placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
         <br />
         <input
           class="pass"
-          align="center"
           type="password"
-          placeholder="password"
+          placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />

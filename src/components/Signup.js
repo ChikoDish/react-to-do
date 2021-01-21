@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 export const handleErrors = async (response) => {
   if (!response.ok) {
     const { message } = await response.json();
@@ -16,6 +17,7 @@ const Signup = () => {
   const register = (e) => {
     e.preventDefault();
     console.log(name, email, password);
+    setError("");
     if (name !== "" && email !== "" && password !== "") {
       axios
         .post("http://localhost:5000/signup", { name, email, password })
@@ -26,30 +28,40 @@ const Signup = () => {
     }
   };
   return (
-    <div>
-      <h1>Sign Up</h1>
+    <div class="main">
+      <p class="sign" align="center">
+        Sign In
+      </p>
       {error && <span style={{ color: "red" }}>{error}</span>}
       <form onSubmit={register}>
         <input
           type="text"
-          placeholder="name"
+          class="un"
+          placeholder="Name"
           onChange={(e) => setName(e.target.value)}
         />
         <br />
         <input
           type="text"
-          placeholder="email"
+          class="un"
+          placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
         <br />
         <input
           type="password"
-          placeholder="password"
+          class="pass"
+          placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
-        <button type="submit">Sign Up</button>
+        <button class="submit" align="center" type="submit">
+          Sign Up
+        </button>
       </form>
+      <p class="forgot" align="center">
+        <Link to="/Login">Sign In</Link>
+      </p>
     </div>
   );
 };
