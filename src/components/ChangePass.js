@@ -1,19 +1,19 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const history = useHistory();
-  const signin = (e) => {
+
+  const changePassword = (e) => {
     e.preventDefault();
     console.log(email, password);
     if (email !== "" && password !== "") {
       axios
         .post("http://localhost:5000/login", { email, password })
-        .then((response) => history.push("/landing"))
+        .then((response) => alert(response))
         .catch((error) => setError("User Already exist"));
     } else {
       setError("Please enter valid details");
@@ -22,10 +22,10 @@ const Login = () => {
   return (
     <div className="main">
       <p className="sign" align="center">
-        Sign In
+        Change Password
       </p>
       {error && <span style={{ color: "red" }}>{error}</span>}
-      <form className="form1" onSubmit={signin}>
+      <form className="form1" onSubmit={changePassword}>
         <input
           className="un"
           type="text"
@@ -41,12 +41,9 @@ const Login = () => {
         />
         <br />
         <button className="submit" align="center" type="submit">
-          Sign In
+          Change Password
         </button>
       </form>
-      <p className="forgot" align="center">
-        <Link to="/Forget">Forgot Password?</Link>
-      </p>
     </div>
   );
 };

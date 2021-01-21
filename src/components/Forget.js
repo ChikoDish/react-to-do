@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const Forget = () => {
   const [email, setEmail] = useState("");
   const [sent, setSend] = useState(false);
   const [text, setText] = useState("Forget Password");
   const [show, setShow] = useState(false);
+  let history = useHistory();
   const forget = (e) => {
     e.preventDefault();
     setSend(true);
@@ -16,6 +18,7 @@ const Forget = () => {
     setText("Forget Password");
     setSend(false);
     setShow(false);
+    history.push("/change");
   };
   return (
     <div className="main">
