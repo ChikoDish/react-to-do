@@ -6,7 +6,6 @@ const User = require("../../models/user");
 router.post("/signup", async (req, res) => {
   const newUser = new User(req.body);
   newUser.password = Bcrypt.hashSync(req.body.password, 10);
-  //newUser.password = newUser.generateHash(req.body.password);
   const user = await User.findOne({ email: req.body.email }).exec();
 
   if (user) {
@@ -21,12 +20,12 @@ router.post("/signup", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email }).exec();
-
-  if (!!user && user.password !== password) {
-    res.status(403).json({ message: "Invalid credentials" });
-    return;
+  if (!user) {
+    res.status(400).send({ message: "email does not exist!" });
+  } else if (!Bcrypt.compareSync(password, user.password)) {
+    res.status(400).send({ message: "Invalid password" });
   } else {
-    res.json({ message: user });
+    res.send({ message: user });
   }
 });
 
