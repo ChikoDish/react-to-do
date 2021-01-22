@@ -6,8 +6,10 @@ import Login from "./components/Login";
 import Forget from "./components/Forget";
 import ChangePass from "./components/ChangePass";
 import Header from "./components/Header";
+import { useState } from "react";
 
 function App() {
+  const [isAuthenticated, setisAuthenticated] = useState(false);
   return (
     <div className="App">
       <Router>
