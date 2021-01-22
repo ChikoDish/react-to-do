@@ -40,28 +40,22 @@ const Signup = () => {
           placeholder="Name"
           onChange={(e) => setName(e.target.value)}
         />
-        <br />
         <input
           type="text"
           className="un"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
-        <br />
         <input
           type="password"
           className="pass"
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <br />
         <button className="submit" align="center" type="submit">
           Sign Up
         </button>
       </form>
-      <p className="forgot" align="center">
-        <Link to="/Login">Sign In</Link>
-      </p>
     </div>
   );
 };

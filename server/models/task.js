@@ -5,18 +5,21 @@ const taskSchema = new Schema({
   userId: {
     type: Schema.Types.ObjectId,
   },
-  password: {
+  todo: {
     type: String,
   },
-  name: {
+  isCompleted: {
     type: String,
   },
-  dob: {
+  dateOfCompletion: {
     type: String,
   },
   createDate: {
     type: Date,
     default: Date.now,
+  },
+  groupId: {
+    type: Schema.Types.ObjectId,
   },
 });
 
