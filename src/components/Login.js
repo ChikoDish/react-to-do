@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { authentication } from "./ProtectedRoutes";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -9,11 +10,14 @@ const Login = () => {
   const history = useHistory();
   const signin = (e) => {
     e.preventDefault();
-    console.log(email, password);
     if (email !== "" && password !== "") {
       axios
         .post("http://localhost:5000/login", { email, password })
-        .then((response) => history.push("/landing"))
+        .then((response) => {
+          authentication.isLoggedIn = true;
+          localStorage.setItem("user", JSON.stringify(response.data.message));
+          history.push("/landing");
+        })
         .catch((error) => setError("User Already exist"));
     } else {
       setError("Please enter valid details");

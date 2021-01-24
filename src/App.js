@@ -7,32 +7,24 @@ import Forget from "./components/Forget";
 import ChangePass from "./components/ChangePass";
 import Header from "./components/Header";
 import { useState } from "react";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 function App() {
-  const [isAuthenticated, setisAuthenticated] = useState(false);
   return (
     <div className="App">
       <Router>
         <Header />
         <Switch>
-          <Route exact path="/">
-            <Login />
-          </Route>
-          <Route exact path="/landing">
-            <Landing />
-          </Route>
-          <Route exect path="/signup">
-            <Signup />
-          </Route>
-          <Route exect path="/login">
-            <Login />
-          </Route>
-          <Route exact path="/forget">
-            <Forget />
-          </Route>
-          <Route exact path="/change">
-            <ChangePass />
-          </Route>
+          <Route exact path="/" component={Login}></Route>
+          <ProtectedRoutes
+            exact
+            path="/landing"
+            component={Landing}
+          ></ProtectedRoutes>
+          <Route exect path="/signup" component={Signup}></Route>
+          <Route exect path="/login" component={Login}></Route>
+          <Route exact path="/forget" component={Forget}></Route>
+          <Route exact path="/change" component={ChangePass}></Route>
         </Switch>
       </Router>
     </div>
