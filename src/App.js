@@ -8,19 +8,23 @@ import ChangePass from "./components/ChangePass";
 import Header from "./components/Header";
 import { useState } from "react";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import { UserContext } from "./contexts/userContext";
 
 function App() {
+  const user = JSON.parse(localStorage.getItem("user"));
   return (
     <div className="App">
       <Router>
         <Header />
         <Switch>
           <Route exact path="/" component={Login}></Route>
-          <ProtectedRoutes
-            exact
-            path="/landing"
-            component={Landing}
-          ></ProtectedRoutes>
+          <UserContext.Provider value={user}>
+            <ProtectedRoutes
+              exact
+              path="/landing"
+              component={Landing}
+            ></ProtectedRoutes>
+          </UserContext.Provider>
           <Route exect path="/signup" component={Signup}></Route>
           <Route exect path="/login" component={Login}></Route>
           <Route exact path="/forget" component={Forget}></Route>

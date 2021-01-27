@@ -14,8 +14,10 @@ router.post("/add", async (req, res) => {
 });
 
 router.post("/get", async (req, res) => {
+  console.log(req.body);
   try {
-    const tasks = Task.find({ userId: req.body.userId }).exec();
+    const tasks = await Task.find({ userId: req.body.userId }).exec();
+    console.log(tasks);
     res.status(200).json(tasks);
   } catch (error) {
     res.status(400).json(error);
@@ -34,7 +36,7 @@ router.post("/edit", async (req, res) => {
   }
 });
 
-router.post("/edit", async (req, res) => {
+router.post("/remove", async (req, res) => {
   try {
     const task = Task.findOneAndRemove({ _id: req.body.id }).exec();
     res.status(200).json(task);

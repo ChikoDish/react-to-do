@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div class="topnav">
+    <div className="topnav">
       <Link to="/">
         {/* <img src="" alt="logo" /> */}
         <span className="logo">Logo</span>
