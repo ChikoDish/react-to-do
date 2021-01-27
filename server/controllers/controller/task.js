@@ -6,7 +6,8 @@ const Task = require("../../models/task");
 router.post("/add", async (req, res) => {
   try {
     const { userId, todo } = req.body;
-    const task = Task.create({ userId, todo });
+    const isCompleted = false;
+    const task = Task.create({ userId, todo, isCompleted });
     res.status(200).json(task);
   } catch (error) {
     res.status(400).json(error);
@@ -38,7 +39,7 @@ router.post("/edit", async (req, res) => {
 
 router.post("/remove", async (req, res) => {
   try {
-    const task = Task.findOneAndRemove({ _id: req.body.id }).exec();
+    const task = Task.findOneAndDelete({ _id: req.body.id }).exec();
     res.status(200).json(task);
   } catch (error) {
     res.status(400).json(error);

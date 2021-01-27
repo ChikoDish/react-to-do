@@ -10,15 +10,13 @@ const Landing = () => {
   const userId = user._id;
 
   useEffect(() => {
-    let todoData = "";
     (async () => {
       const apiUrl = "http://localhost:5000/todo/get";
       const data = await axios.post(apiUrl, { userId });
       setTodos(data.data);
     })();
-  }, [todo]);
+  }, [todo, userId]);
 
-  console.log(todos);
   const addToDo = () => {
     if (todo === "") {
       setError("Please enter valid todo");
@@ -34,6 +32,10 @@ const Landing = () => {
         });
     }
   };
+
+  const remove = (id) => {
+    axios.post("http://localhost:5000/todo/remove", { id });
+  };
   return (
     <div className="main">
       <p className="sign" align="center">
@@ -48,8 +50,21 @@ const Landing = () => {
       <button className="submit" onClick={() => addToDo()}>
         Add
       </button>
-      <div className="list">
-        <ul>{todos ? todos.map((item) => <li>{item.todo}</li>) : ""}</ul>
+      <div className="card-section">
+        <ul>
+          {todos
+            ? todos.map((item) => (
+                <li>
+                  <input id="item1" type="checkbox" />
+                  <label for="item1"></label>
+                  {item.todo}
+                  <span className="delete" onClick={() => remove(item._id)}>
+                    delete
+                  </span>
+                </li>
+              ))
+            : ""}
+        </ul>
       </div>
     </div>
   );
