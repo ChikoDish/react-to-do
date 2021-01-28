@@ -123,6 +123,15 @@ a {
 .delete {
   float: right;
   cursor: pointer;
+  padding: 5px 5px 5px 5px;
+  margin-right: 10px;
+  border-radius: 5em;
+  color: #fff;
+  background: linear-gradient(to right, #9c27b0, #e040fb);
+  border: 0;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 13px;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
 }
 @media (max-width: 600px) {
   .main {
