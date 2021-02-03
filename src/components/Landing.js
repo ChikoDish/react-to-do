@@ -36,8 +36,8 @@ const Landing = () => {
   const remove = (id) => {
     axios.post("http://localhost:5000/todo/remove", { id });
   };
-  const edit = (id) => {
-    axios.post("http://localhost:5000/todo/edit", { id });
+  const edit = (id, todo) => {
+    axios.post("http://localhost:5000/todo/edit", { id, todo });
   };
   return (
     <div className="main">
@@ -57,7 +57,7 @@ const Landing = () => {
         <ul>
           {todos
             ? todos.map((item) => (
-                <li>
+                <li key={item._id}>
                   <input id="item1" type="checkbox" />
                   <input
                     type="text"
@@ -65,7 +65,7 @@ const Landing = () => {
                     value={item.todo}
                     onChange={(e) => setTodo(e.target.value)}
                   ></input>
-                  <span className="delete" onClick={() => edit(item._id)}>
+                  <span className="delete" onClick={() => edit(item._id, todo)}>
                     Edit
                   </span>
                   <span className="delete" onClick={() => remove(item._id)}>
